@@ -27,7 +27,9 @@ public class Main {
 		account.setBalance(300.0);
 		account.setClient(client);
 		
-		System.out.println(client.getName()+" - "+ account.getAgency());
+		account.deposit(500.00);
+		account.withdraw(200.00);
+		//account.transfer(poupanca, 50.0);
 
 	}
 

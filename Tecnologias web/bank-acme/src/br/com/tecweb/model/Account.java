@@ -88,10 +88,12 @@ public class Account {
 		if(this.balance >= value) {
 			this.balance -= value;
 		}
+		this.transactions.add(createTransaction(this, value, "withdraw", LocalDateTime.now()));
 		return this.balance;
 	}
 	
 	public Double deposit(Double value) {
+		this.transactions.add(createTransaction(this, value, "withdraw", LocalDateTime.now()));
 		return this.balance += value;
 	}
 	
@@ -101,6 +103,7 @@ public class Account {
 			this.withdraw(value);
 			account.deposit(value);
 		}
+		this.transactions.add(createTransaction(this, value, "withdraw", LocalDateTime.now()));
 		return this.balance;
 	}
 	
@@ -109,7 +112,7 @@ public class Account {
 	}
 	
 	private Transaction createTransaction(Account account, Double value, String typeTransaction, 
-			String dataTimeTransaction) {
+			LocalDateTime localDateTime) {
 		Transaction transaction = new Transaction();
 		transaction.setAccount(account);
 		transaction.setValue(value);
